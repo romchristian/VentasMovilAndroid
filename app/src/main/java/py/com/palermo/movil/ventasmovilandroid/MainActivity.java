@@ -1,7 +1,7 @@
 package py.com.palermo.movil.ventasmovilandroid;
 
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -11,15 +11,11 @@ import com.android.volley.NetworkResponse;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.HttpHeaderParser;
-import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonRequest;
 import com.google.gson.GsonBuilder;
 
-import org.json.JSONArray;
 import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.io.UnsupportedEncodingException;
 import java.util.Date;
@@ -47,7 +43,10 @@ public class MainActivity extends ActionBarActivity {
         InfoPocket info = new InfoPocket();
         info.setPocketId(894162902);
 
-        final String body = new GsonBuilder().setPrettyPrinting().create().toJson(info);
+        //final String body = new GsonBuilder().setPrettyPrinting().create().toJson(info);
+        final String body = new GsonBuilder().create().toJson(info);
+        Log.d("BODY", body);
+
 
         Request req = new JsonRequest<VendedorResponse>(Request.Method.POST, "http://172.16.8.95:8080/ServicioPocketAndroid/webresources/sincronizacion/vendedor", body,
                 new Response.Listener<VendedorResponse>() {
